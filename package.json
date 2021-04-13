@@ -1,11 +1,13 @@
 {
-  "name": "fastify-session-knex-store",
+  "name": "@chriswk/fastify-session-knex-store",
   "version": "0.1.0",
   "description": "Fastify session store using knex",
   "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "repository": "https://github.com/chriswk/fastify-session-knex-store",
   "author": "Christopher Kolstad <npm@chriswk.no>",
   "license": "MIT",
+  "access": "public",
   "scripts": {
     "build": "rimraf lib/*; tsc --build",
     "test": "jest",
