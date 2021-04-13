@@ -1,6 +1,6 @@
 # FastifySession KnexStore
 
-[![npm version](https://img.shields.io/npm/v/@chriswk/fastify-session-knex-store)](https://github.com/mgcrea/fastify-session-redis-store/releases)
+[![npm version](https://img.shields.io/npm/v/@chriswk/fastify-session-knex-store)](https://github.com/chriswk/fastify-session-redis-store/releases)
 [![license](https://img.shields.io/npm/l/@chriswk/fastify-session-knex-store)](https://tldrlegal.com/license/mit-license)
 [![build status](https://img.shields.io/github/workflow/status/@chriswk/fastify-session-knex-store/ci)](https://github.com/chriswk/fastify-session-knex-store/actions)
 [![dependencies status](https://img.shields.io/david/mgcrea/fastify-session-redis-store)](https://david-dm.org/chriswk/fastify-session-knex-store)
