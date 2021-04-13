@@ -14,6 +14,12 @@ export interface SessionTable {
     expiry?: number;
 }
 
+interface SessionTableRow {
+    key: string;
+    data: SessionData;
+    expiry?: number;
+}
+
 export class KnexStore<T extends SessionData = SessionData> extends EventEmitter implements SessionStore {
     private knex: Knex;
     private readonly prefix: string;
@@ -48,8 +54,21 @@ export class KnexStore<T extends SessionData = SessionData> extends EventEmitter
 
     async get(sessionId: string): Promise<[SessionData, number | null] | null> {
         const key = this.getKey(sessionId);
-        const row = await this.knex.table<SessionTable>(this.table).where({ key }).first();
-        return row ? [row.data, row.expiry as number || null] : null;
+        const row = await this.knex.table<SessionTable>(this.table)
+            .where({ key })
+            .andWhere('expiry', '>', Date.now())
+            .first<SessionTableRow>();
+        if (row) {
+            let rData;
+            if (typeof row.data === 'string') {
+                rData = JSON.parse(row.data);
+            } else {
+                rData = row.data;
+            }
+            return [rData, row.expiry || null]
+        } else {
+            return null;
+        }
     }
 
     async destroy(sessionId: string): Promise<void> {
