@@ -23,7 +23,7 @@ Knex session store for [fastify](https://github.com/fastify/fastify).
 ## Usage
 
 ```bash
-npm install @chriswk/fastify-session-knex-store
+npm install fastify-session-knex-store
 ```
 
 ```bash
@@ -37,7 +37,7 @@ Also you'll need to install knex adapter of your choice. Refer to [Knex docs](ht
 ```ts
 import createFastify, { FastifyInstance, FastifyServerOptions } from 'fastify';
 import fastifyCookie from 'fastify-cookie';
-import KnexStore from '@chriswk/fastify-session-knex-store';
+import KnexStore from 'fastify-session-knex-store';
 import fastifySession from '@mgcrea/fastify-session';
 import { IS_PROD, IS_TEST, REDIS_URI, SESSION_TTL } from './config/env';
 
