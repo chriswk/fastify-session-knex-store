@@ -3,7 +3,7 @@ name: sqlite
 on: [push, pull_request]
 
 jobs:
-  sqlitetest:
+  sqlite:
     runs-on: ubuntu-latest
 
     strategy:

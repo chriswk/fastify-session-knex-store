@@ -1,0 +1,42 @@
+name: ci
+
+on: [push, pull_request]
+
+jobs:
+  mysql:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [14.x]
+
+    services:
+      mariadb:
+        image: mariadb:latest
+        env:
+          MYSQL_USER: knex
+          MYSQL_PASSWORD: password
+          MYSQL_DATABASE: fastify_session
+        # Set health checks to wait until postgres has started
+        ports:
+          - 5562:3306
+        options: --health-cmd="mysqladmin ping" --health-interval=5s --health-timeout=2s --health-retries=3
+        
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2-beta
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: yarn
+      - run: ./node_modules/.bin/knex migrate:latest
+        env:
+          NODE_ENV: mysql
+      - run: yarn build
+      - run: yarn test
+        env:
+          CI: true
+          DATABASE_URL: mysql://knex:password@localhost:5562/fastify_session?debug=true&charset=utf8
+          DATABASE_CLIENT: mysql2
+      - run: yarn run lint

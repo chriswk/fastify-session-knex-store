@@ -27,7 +27,7 @@ module.exports = {
   },
 
   mysql: {
-    client: "mysql",
-    connection: "mysql://knex:password"
+    client: "mysql2",
+    connection: "mysql://knex:password@localhost:5562/fastify_session?charset=utf8"
   }
 };
