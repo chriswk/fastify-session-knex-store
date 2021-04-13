@@ -1,4 +1,4 @@
-name: ci
+name: mysql
 
 on: [push, pull_request]
 
