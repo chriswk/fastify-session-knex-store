@@ -2,7 +2,6 @@ import { SessionData, SessionStore } from '@mgcrea/fastify-session';
 import { EventEmitter } from 'events';
 import { Knex } from 'knex';
 
-type StoredData = { data: string, expiry: number | null}; // [session data, expiry time in ms]
 export type KnexStoreOptions = { client: Knex, table?: string, prefix?: string, ttl?: number };
 
 export const DEFAULT_PREFIX = 'sess:';
@@ -55,7 +54,7 @@ export class KnexStore<T extends SessionData = SessionData> extends EventEmitter
 
     async destroy(sessionId: string): Promise<void> {
         const key = this.getKey(sessionId);
-        await this.knex.table(this.table).where({key: this.getKey(sessionId)}).del();
+        await this.knex.table(this.table).where({ key }).del();
         return;
     }
 
