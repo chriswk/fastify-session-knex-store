@@ -2,7 +2,7 @@
 
 [![npm version](https://img.shields.io/npm/v/fastify-session-knex-store)](https://github.com/chriswk/fastify-session-redis-store/releases)
 [![license](https://img.shields.io/npm/l/fastify-session-knex-store)](https://tldrlegal.com/license/mit-license)
-[![build status](https://img.shields.io/github/workflow/status/fastify-session-knex-store/ci)](https://github.com/chriswk/fastify-session-knex-store/actions)
+[![build status](https://img.shields.io/github/workflow/status/chriswk/fastify-session-knex-store/ci)](https://github.com/chriswk/fastify-session-knex-store/actions)
 [![dependencies status](https://img.shields.io/david/chriswk/fastify-session-knex-store)](https://david-dm.org/chriswk/fastify-session-knex-store)
 [![devDependencies status](https://img.shields.io/david/dev/chriswk/fastify-session-knex-store)](https://david-dm.org/chriswk/fastify-session-knex-store?type=dev)
 
