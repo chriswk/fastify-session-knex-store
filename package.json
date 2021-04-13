@@ -12,9 +12,20 @@
     "build": "rimraf lib/*; tsc --build",
     "test": "jest",
     "typecheck": "tsc --noEmit",
-    "prettycheck": "prettier --check 'src/'",
     "lint": "eslint src/",
-    "prepare": "yarn run build"
+    "lint:fix": "eslint --fix src/",
+    "prepare": "yarn run build && husky install"
+    
+  },
+  "lint-staged": {
+    "*.ts": [
+      "eslint --fix"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   },
   "devDependencies": {
     "@mgcrea/fastify-session": "^0.14.1",
@@ -27,6 +38,7 @@
     "eslint-config-prettier": "^8.1.0",
     "eslint-plugin-jest": "^24.3.5",
     "eslint-plugin-prettier": "^3.3.1",
+    "husky": "^6.0.0",
     "jest": "^26.6.3",
     "knex": "0.95.4",
     "pg": "^8.5.1",
