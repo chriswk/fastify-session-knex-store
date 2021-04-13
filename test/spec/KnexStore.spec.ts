@@ -5,8 +5,8 @@ import { dir } from 'node:console';
 import path from 'path';
 import { dirname } from 'node:path';
 
-const DB_URL = process.env.DB_URL || 'postgresql://knex:password@localhost:5432/session';
-const DB_CLIENT = process.env.DB_CLIENT || 'pg';
+const DB_URL = process.env.DATABASE_URL || 'postgresql://knex:password@localhost:5432/session';
+const DB_CLIENT = process.env.DATABASE_CLIENT || 'pg';
 
 describe('KnexStore Postgres', () => {
     const knex = Knex({
