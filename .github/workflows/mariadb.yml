@@ -1,9 +1,9 @@
-name: mysql
+name: mariadb
 
 on: [push, pull_request]
 
 jobs:
-  mysql:
+  mariadb:
     runs-on: ubuntu-latest
 
     strategy:
