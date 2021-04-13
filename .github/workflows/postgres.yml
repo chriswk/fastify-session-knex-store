@@ -3,7 +3,7 @@ name: postgres
 on: [push, pull_request]
 
 jobs:
-  build:
+  postgres:
     runs-on: ubuntu-latest
 
     strategy:
@@ -17,7 +17,7 @@ jobs:
           POSTGRES_PASSWORD: postgres
         # Set health checks to wait until postgres has started
         ports:
-          - 5562:5432
+          - 5432:5432
         options: >-
           --health-cmd pg_isready
           --health-interval 10s
@@ -34,6 +34,8 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - run: yarn
       - run: ./node_modules/.bin/knex migrate:latest
+        env:
+          NODE_ENV: postgres
       - run: yarn build
       - run: yarn test
         env:
