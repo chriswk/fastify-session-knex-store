@@ -5,10 +5,10 @@
 [![dependencies status](https://img.shields.io/david/chriswk/fastify-session-knex-store)](https://david-dm.org/chriswk/fastify-session-knex-store)
 [![devDependencies status](https://img.shields.io/david/dev/chriswk/fastify-session-knex-store)](https://david-dm.org/chriswk/fastify-session-knex-store?type=dev)
 
-# Tested with
-[![postgresql](https://img.shields.io/github/workflow/status/chriswk/fastify-session-knex-store/postgres)](https://github.com/chriswk/fastify-session-knex-store/actions)
-[![sqlite](https://img.shields.io/github/workflow/status/chriswk/fastify-session-knex-store/sqlite)](https://github.com/chriswk/fastify-session-knex-store/actions)
-[![mariadb](https://img.shields.io/github/workflow/status/chriswk/fastify-session-knex-store/mariadb)](https://github.com/chriswk/fastify-session-knex-store/actions)
+# Currently tested with the following knex adapters
+* postgres: [![postgresql](https://img.shields.io/github/workflow/status/chriswk/fastify-session-knex-store/postgres)](https://github.com/chriswk/fastify-session-knex-store/actions)
+* sqlite3: [![sqlite](https://img.shields.io/github/workflow/status/chriswk/fastify-session-knex-store/sqlite)](https://github.com/chriswk/fastify-session-knex-store/actions)
+* mariadb|mysql2: [![mariadb](https://img.shields.io/github/workflow/status/chriswk/fastify-session-knex-store/mariadb)](https://github.com/chriswk/fastify-session-knex-store/actions)
 
 
 Knex session store for [fastify](https://github.com/fastify/fastify).
