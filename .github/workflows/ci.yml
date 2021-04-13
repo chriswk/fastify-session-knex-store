@@ -1,0 +1,43 @@
+name: ci
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [14.x]
+
+    services:
+      postgres:
+        image: postgres:latest
+        env:
+          POSTGRES_PASSWORD: postgres
+        # Set health checks to wait until postgres has started
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+        
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2-beta
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: yarn
+      - run: ./node_modules/.bin/knex migrate:latest
+      - run: yarn build
+      - run: yarn test
+        env:
+          CI: true
+          DATABASE_URL: postgres://postgres:postgres@localhost:5432/postgres
+      - run: yarn run lint
+      - run: yarn run prettycheck
