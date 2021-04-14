@@ -1,11 +1,22 @@
 import { DEFAULT_PREFIX, KnexStore } from 'src/KnexStore';
 import Knex from 'knex';
-import * as crypto from 'crypto';
 import * as faker from 'faker';
-const DB_URL = process.env.DATABASE_URL || 'postgresql://knex:password@localhost:5432/session';
+import path from 'path';
+const DB_URL = process.env.DATABASE_URL || 'postgresql://knex:password@localhost:5432/fastify_session';
 const DB_CLIENT = process.env.DATABASE_CLIENT || 'pg';
 
 const getId = () => faker.datatype.uuid();
+
+beforeAll(async () => {
+    const knex = Knex({
+        client: DB_CLIENT,
+        connection: DB_URL,
+    });
+    await knex.migrate.latest({
+        directory: path.resolve(__dirname, '../../migrations')
+    });
+    await knex.destroy();
+});
 
 describe('KnexStore', () => {
     const knex = Knex({

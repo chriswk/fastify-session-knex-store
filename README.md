@@ -49,7 +49,7 @@ export const buildFastify = (options?: FastifyServerOptions): FastifyInstance =>
   fastify.register(fastifyCookie);
   fastify.register(fastifySession, {
     store: new KnexStore({ client: new Knex({
-        client: 'pg' // or the other options supported by knex
+        client: 'postgresql', // or the other options supported by knex
         connection: {
             host: DB_HOST,
             port: DB_PORT,
@@ -70,18 +70,29 @@ export const buildFastify = (options?: FastifyServerOptions): FastifyInstance =>
 
 ### Testing
 
-Tests run against a postgres database by default. This needs to be configured in advance. Install knex globally
+Tests run against a postgres database by default.
+
+Default details is
+* `username`: knex
+* `password`: password
+* `database`: fastify_session
+
+so you'll need to configure a database where this works, or you can pass in any DATABASE_URL when running tests,
+
+Running `yarn test` is equivalent to:
+
 ```bash
-yarn global add knex
+DATABASE_CLIENT=pg DATABASE_URL=postgresql://knex:password@localhost:5432/fastify_session
 ```
 
-Default postgres database is configured to be `session` with username `knex` and password `password`, if this is already setup, run
+If you need to run with a different adapter, add the adapter to dev-dependencies
 ```bash
-knex migrate:latest
+yarn add mysql2
 ```
-
-from project root folder to setup test database instance.
-
+and then configure a correct url for your adapter
+```bash
+DATABASE_CLIENT=mysql2 DATABASE_URL=mysql://USER:PASSWORD@localhost:3306/DATABASE_NAME?charset=utf8
+```
 
 ## Authors
 

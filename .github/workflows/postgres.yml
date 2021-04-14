@@ -33,12 +33,9 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - run: yarn
-      - run: ./node_modules/.bin/knex migrate:latest
-        env:
-          NODE_ENV: postgres
       - run: yarn build
       - run: yarn test
         env:
           CI: true
-          DATABASE_URL: postgres://postgres:postgres@localhost:5562/postgres
+          DATABASE_URL: postgres://postgres:postgres@localhost:5432/postgres
       - run: yarn run lint
