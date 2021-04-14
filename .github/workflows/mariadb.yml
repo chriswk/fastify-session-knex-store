@@ -17,10 +17,11 @@ jobs:
           MYSQL_USER: knex
           MYSQL_PASSWORD: password
           MYSQL_DATABASE: fastify_session
+          MYSQL_ROOT_PASSWORD: root_password
         # Set health checks to wait until postgres has started
         ports:
           - 3306:3306
-        options: --health-cmd="mysqladmin ping" --health-interval=5s --health-timeout=2s --health-retries=3
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=10s --health-retries=10
         
 
     steps:
