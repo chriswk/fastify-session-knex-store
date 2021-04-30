@@ -1,6 +1,6 @@
 {
   "name": "fastify-session-knex-store",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Fastify session store using knex",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -49,8 +49,5 @@
     "ts-jest": "^26.5.4",
     "ts-node": "^9.1.1",
     "typescript": "^4.2.4"
-  },
-  "dependencies": {
-    "@types/faker": "^5.5.1"
   }
 }
